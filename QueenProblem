@@ -1,0 +1,51 @@
+static void show (ulong a)
+        {
+            String val = Convert.ToString((long)a, 2);
+            for (int x = 0; x < 8; x++)
+            {
+                Console.WriteLine();
+                for (int y = 0; y < 8; y++)
+                {
+                    Console.Write((val[x*8 + y])+" ");
+                }
+            }
+
+        }
+        static bool valid(ulong grid, int col, int row)
+        {
+            string d = Convert.ToString((long)grid, 2);
+
+            //Same row?
+            ulong rowCheck = 11111111u << ((7 - row) * 8);
+
+            //Diagonal right-down
+            String val = "";
+            for (int x = 0; x < 8; x++)
+            {
+                Console.WriteLine();
+                for (int y = 0; y < 8; y++)
+                {
+                    if (row - x == col - y || row - x == -(col - y))
+                        val += "1";
+                    else
+                        val += "0";
+                }
+            }
+
+            ulong a = (ulong)Convert.ToInt64(val, 2) | rowCheck;
+            show(a);
+            return (a & grid) == 0;
+        }
+
+        static void calculate(ulong grid, int col)
+        {
+            String bits = Convert.ToString((long)grid, 2);
+            
+        }
+
+        static void Main(string[] args)
+        {
+            bool a = valid(1u << 63, 1, 0);
+            bool b = valid(1u << 63, 1, 1);
+            bool c = valid(1u << 63, 1, 2);
+        }
